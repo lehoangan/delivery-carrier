@@ -17,8 +17,7 @@ class DeliveryCarrier(models.Model):
         ondelete={"postlogistics": "set default"},
     )
     postlogistics_default_package_type_id = fields.Many2one(
-        "stock.package.type",
-        domain=[("package_carrier_type", "=", "postlogistics")]
+        "stock.package.type", domain=[("package_carrier_type", "=", "postlogistics")]
     )
 
     postlogistics_endpoint_url = fields.Char(

@@ -20,15 +20,11 @@ class TestPostlogisticsCommon(SavepointCase):
 
     @classmethod
     def setUpClassCarrier(cls):
-        shipping_product = cls.env["product.product"].create(
-            {"name": "Shipping"})
+        shipping_product = cls.env["product.product"].create({"name": "Shipping"})
         option_model = cls.env["postlogistics.delivery.carrier.template.option"]
-        partner_id = cls.env.ref(
-            "delivery_postlogistics.partner_postlogistics").id
-        label_layout = option_model.create(
-            {"code": "A6", "partner_id": partner_id})
-        output_format = option_model.create(
-            {"code": "PDF", "partner_id": partner_id})
+        partner_id = cls.env.ref("delivery_postlogistics.partner_postlogistics").id
+        label_layout = option_model.create({"code": "A6", "partner_id": partner_id})
+        output_format = option_model.create({"code": "PDF", "partner_id": partner_id})
         image_resolution = option_model.create(
             {"code": "600", "partner_id": partner_id}
         )
@@ -49,14 +45,13 @@ class TestPostlogisticsCommon(SavepointCase):
 
     @classmethod
     def setUpClassPackaging(cls):
-        cls.postlogistics_pd_package_type =\
-            cls.env["stock.package.type"].create(
-                {
-                    "name": "PRI-TEST",
-                    "package_carrier_type": "postlogistics",
-                    "shipper_package_code": "PRI, BLN",
-                }
-            )
+        cls.postlogistics_pd_package_type = cls.env["stock.package.type"].create(
+            {
+                "name": "PRI-TEST",
+                "package_carrier_type": "postlogistics",
+                "shipper_package_code": "PRI, BLN",
+            }
+        )
 
     @classmethod
     def setUpClassUserCompany(cls):
@@ -108,10 +103,9 @@ class TestPostlogisticsCommon(SavepointCase):
                     "location_dest_id": cls.customer_location.id,
                 }
             )
-        choose_delivery_package_wizard =\
-            cls.env["choose.delivery.package"].create({
-                "picking_id": picking.id,
-                "delivery_package_type_id": package_type.id})
+        choose_delivery_package_wizard = cls.env["choose.delivery.package"].create(
+            {"picking_id": picking.id, "delivery_package_type_id": package_type.id}
+        )
         picking.action_assign()
         choose_delivery_package_wizard.action_put_in_pack()
         return picking

@@ -5,7 +5,7 @@ from odoo import fields, models
 
 
 class PackageType(models.Model):
-    _inherit = 'stock.package.type'
+    _inherit = "stock.package.type"
 
     package_carrier_type = fields.Selection(
         selection_add=[("postlogistics", "PostLogistics")]
@@ -17,8 +17,5 @@ class PackageType(models.Model):
         """
         self.ensure_one()
         if self.shipper_package_code:
-            return [
-                code.strip()
-                for code in self.shipper_package_code.split(",")
-            ]
+            return [code.strip() for code in self.shipper_package_code.split(",")]
         return []

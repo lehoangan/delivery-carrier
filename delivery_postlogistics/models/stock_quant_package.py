@@ -7,11 +7,11 @@ class StockQuantPackage(models.Model):
     _inherit = "stock.quant.package"
 
     postlogistics_manual_cod_amount = fields.Float(
-        string="PostLogistics Cash On Delivery Amount",
+        "PostLogistics Cash On Delivery Amount",
         help="If the cash on delivery amount for this package is different "
         "than the total of the sales order, write the amount there.",
     )
-    parcel_tracking = fields.Char("Parcel Tracking")
+    parcel_tracking = fields.Char()
     package_carrier_type = fields.Selection(
         related="package_type_id.package_carrier_type",
         string="Packaging's Carrier",

@@ -152,8 +152,7 @@ class PostlogisticsWebService(object):
             "zip": self._sanitize_string(partner.zip),
             "city": self._sanitize_string(partner.city),
             "country": partner.country_id.code,
-            "domicilePostOffice":
-            picking.carrier_id.postlogistics_office or None,
+            "domicilePostOffice": picking.carrier_id.postlogistics_office or None,
         }
         logo = picking.carrier_id.postlogistics_logo
         if logo:
@@ -192,8 +191,7 @@ class PostlogisticsWebService(object):
         return franking_license.number
 
     def _prepare_attributes(
-        self, picking, pack=None, pack_num=None,
-        pack_total=None, pack_weight=None
+        self, picking, pack=None, pack_num=None, pack_total=None, pack_weight=None
     ):
         packaging = (
             pack
@@ -205,8 +203,7 @@ class PostlogisticsWebService(object):
         if pack_weight:
             total_weight = pack_weight
         else:
-            total_weight =\
-                pack.shipping_weight if pack else picking.shipping_weight
+            total_weight = pack.shipping_weight if pack else picking.shipping_weight
         total_weight *= 1000
 
         if not services:
@@ -280,8 +277,9 @@ class PostlogisticsWebService(object):
             )
 
         result = []
-        packaging_codes =\
+        packaging_codes = (
             package and package.package_type_id._get_packaging_codes() or []
+        )
 
         if set(packaging_codes) & {"BLN", "N"}:
             cod_attributes = self._cash_on_delivery(picking, package=package)
@@ -520,8 +518,9 @@ class PostlogisticsWebService(object):
                 res["errors"] = response.content.decode("utf-8")
                 _logger.warning(
                     "Shipping label could not be generated.\n"
-                    "Request: %s\n"
-                    "Response: %s" % (json.dumps(data), res["errors"])
+                    "Request: %(datas)s\n"
+                    "Response: %(error)s"
+                    % {"datas": json.dumps(data), "error": res["errors"]}
                 )
                 return [res]
 
@@ -532,10 +531,10 @@ class PostlogisticsWebService(object):
                 res["success"] = False
                 res["errors"] = []
                 for error in response_dict["item"]["errors"]:
-                    res["errors"] = _("Error code: %s, Message: %s") % (
-                        error["code"],
-                        error["message"],
-                    )
+                    res["errors"] = _("Error code: %(code)s, Message: %(message)s") % {
+                        "code": error["code"],
+                        "message": error["message"],
+                    }
                 results.append(res)
                 return results
 

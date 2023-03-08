@@ -41,5 +41,4 @@ class TestPackagingCode(SavepointCase):
         with Form(self.package_type) as package_type:
             package_type.package_carrier_type = self.carrier.delivery_type
             package_type.shipper_package_code = PACKAGE_CODE
-        self.assertEqual(
-            self.package_type._get_packaging_codes(), EXPECTED_CODES)
+        self.assertEqual(self.package_type._get_packaging_codes(), EXPECTED_CODES)

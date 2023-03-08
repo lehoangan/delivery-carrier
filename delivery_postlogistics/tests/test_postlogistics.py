@@ -41,14 +41,12 @@ class TestPostlogistics(TestPostlogisticsCommon):
 
     def test_store_label(self):
         with recorder.use_cassette("test_store_label") as cassette:
-            res = self.picking._generate_postlogistics_label(
-                skip_attach_file=True)
+            res = self.picking._generate_postlogistics_label(skip_attach_file=True)
             self.assertEqual(len(cassette.requests), 2)
         ref = "996001321700005959"
         self.assertEqual(res[0]["file_type"], "pdf")
         self.assertEqual(res[0]["name"], "{}.pdf".format(ref))
-        self.assertEqual(res[0]["file"][:30],
-                         b"JVBERi0xLjQKJeLjz9MKMiAwIG9iag")
+        self.assertEqual(res[0]["file"][:30], b"JVBERi0xLjQKJeLjz9MKMiAwIG9iag")
         self.assertEqual(self.picking.carrier_tracking_ref, ref)
 
     def test_missing_language(self):
@@ -60,14 +58,12 @@ class TestPostlogistics(TestPostlogisticsCommon):
     def test_store_label_postlogistics_tracking_format_picking_num(self):
         self.carrier.postlogistics_tracking_format = "picking_num"
         with recorder.use_cassette("test_store_label") as cassette:
-            res = self.picking._generate_postlogistics_label(
-                skip_attach_file=True)
+            res = self.picking._generate_postlogistics_label(skip_attach_file=True)
             self.assertEqual(len(cassette.requests), 2)
         ref = "996001321700005959"
         self.assertEqual(res[0]["file_type"], "pdf")
         self.assertEqual(res[0]["name"], "{}.pdf".format(ref))
-        self.assertEqual(res[0]["file"][:30],
-                         b"JVBERi0xLjQKJeLjz9MKMiAwIG9iag")
+        self.assertEqual(res[0]["file"][:30], b"JVBERi0xLjQKJeLjz9MKMiAwIG9iag")
         self.assertEqual(self.picking.carrier_tracking_ref, ref)
 
     def test_prepare_recipient(self):
