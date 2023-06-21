@@ -22,6 +22,8 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_delivery_carrier_label](base_delivery_carrier_label/) | 16.0.1.0.0 |  | Base module for carrier labels
+[delivery_auto_refresh](delivery_auto_refresh/) | 16.0.1.0.0 |  | Auto-refresh delivery price in sales orders
+[delivery_automatic_package](delivery_automatic_package/) | 16.0.1.0.0 |  | Allows to set a delivery package automatically when sending to shipper.
 [delivery_carrier_account](delivery_carrier_account/) | 16.0.1.0.0 |  | Delivery Carrier Account
 [delivery_carrier_agency](delivery_carrier_agency/) | 16.0.1.0.0 |  | Add a model for Carrier Agencies
 [delivery_carrier_info](delivery_carrier_info/) | 16.0.1.0.0 |  | Add code on carrier
@@ -29,9 +31,10 @@ addon | version | maintainers | summary
 [delivery_cttexpress](delivery_cttexpress/) | 16.0.1.1.0 |  | Delivery Carrier implementation for CTT Express API
 [delivery_package_number](delivery_package_number/) | 16.0.1.0.0 |  | Set or compute number of packages for a picking
 [delivery_package_type_number_parcels](delivery_package_type_number_parcels/) | 16.0.1.0.1 |  | Number of parcels in a package type
+[delivery_postlogistics](delivery_postlogistics/) | 16.0.1.0.0 |  | Print PostLogistics shipping labels using the Barcode web service
 [delivery_price_method](delivery_price_method/) | 16.0.1.0.0 |  | Provides fields to be able to contemplate the tracking statesand also adds a global fields
 [delivery_state](delivery_state/) | 16.0.1.1.0 |  | Provides fields to be able to contemplate the tracking statesand also adds a global fields
-[stock_picking_delivery_link](stock_picking_delivery_link/) | 16.0.1.0.1 |  | Adds link to the delivery on all intermediate operations.
+[stock_picking_delivery_link](stock_picking_delivery_link/) | 16.0.1.1.0 |  | Adds link to the delivery on all intermediate operations.
 
 [//]: # (end addons)
 
